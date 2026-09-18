@@ -637,151 +637,1403 @@
         document.getElementById("result");
 
       const nextButton =
-        document.getElementById("nextBtn");
+     <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>KOKU STUDY HUB</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#080d1b;
+color:#fff;
+min-height:100vh;
+}
+
+button{
+font-family:inherit;
+}
+
+.header{
+padding:28px 18px 35px;
+text-align:center;
+background:
+radial-gradient(circle at 20% 10%,#ffb300,transparent 30%),
+linear-gradient(135deg,#ff7900,#e63900 55%,#171329);
+border-radius:0 0 35px 35px;
+box-shadow:0 10px 35px #0008;
+}
+
+.logo{
+width:82px;
+height:82px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:42px;
+border-radius:25px;
+background:#ffffff22;
+border:1px solid #ffffff44;
+box-shadow:
+0 15px 30px #0005,
+inset 0 2px 10px #fff4;
+}
+
+.header h1{
+margin-top:14px;
+font-size:27px;
+font-weight:900;
+}
+
+.header p{
+margin-top:6px;
+font-size:13px;
+opacity:.9;
+}
+
+.container{
+max-width:650px;
+margin:auto;
+padding:20px 15px 90px;
+}
+
+.page{
+display:none;
+}
+
+.page.active{
+display:block;
+}
+
+.welcome{
+margin-bottom:18px;
+}
+
+.welcome h2{
+font-size:21px;
+}
+
+.welcome p{
+margin-top:6px;
+font-size:13px;
+color:#9da8bd;
+}
+
+/* HOME CARDS */
+
+.home-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.card{
+position:relative;
+min-height:145px;
+padding:20px 15px;
+border-radius:24px;
+overflow:hidden;
+cursor:pointer;
+
+background:
+linear-gradient(145deg,#ffffff18,#ffffff05);
+
+border:1px solid #ffffff12;
+
+box-shadow:
+0 14px 30px #0006,
+inset 0 1px 1px #fff2;
+
+transition:.2s;
+}
+
+.card:active{
+transform:scale(.95);
+}
+
+.card:after{
+content:"";
+position:absolute;
+width:100px;
+height:100px;
+right:-35px;
+top:-35px;
+border-radius:50%;
+background:#ffffff08;
+}
+
+.icon{
+font-size:40px;
+margin-bottom:12px;
+}
+
+.card h3{
+font-size:17px;
+}
+
+.card p{
+margin-top:5px;
+font-size:12px;
+color:#929db3;
+}
+
+/* PAGE TITLE */
+
+.page-title{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:18px;
+}
+
+.back{
+width:43px;
+height:43px;
+border:0;
+border-radius:14px;
+background:#1a2540;
+color:#fff;
+font-size:21px;
+}
+
+/* TOPICS */
+
+.topic-list{
+display:grid;
+gap:12px;
+}
+
+.topic{
+display:flex;
+align-items:center;
+padding:16px;
+border-radius:19px;
+background:linear-gradient(135deg,#17233d,#10172a);
+border:1px solid #ffffff0d;
+box-shadow:0 8px 20px #0004;
+cursor:pointer;
+}
+
+.topic:active{
+transform:scale(.97);
+}
+
+.topic-icon{
+width:52px;
+height:52px;
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:27px;
+background:#243252;
+margin-right:13px;
+}
+
+.topic h3{
+font-size:15px;
+}
+
+.topic p{
+margin-top:5px;
+font-size:12px;
+color:#8f9ab0;
+}
+
+/* QUIZ SETS */
+
+.quiz-set{
+background:#151e34;
+padding:18px;
+margin-bottom:12px;
+border-radius:19px;
+border:1px solid #ffffff0d;
+cursor:pointer;
+}
+
+.quiz-set h3{
+font-size:16px;
+}
+
+.quiz-set p{
+color:#8e99ad;
+font-size:12px;
+margin-top:6px;
+}
+
+/* QUESTION */
+
+.progress{
+height:7px;
+background:#222d45;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:18px;
+}
+
+.progress-bar{
+height:100%;
+background:linear-gradient(90deg,#ff9d00,#ff3d00);
+width:0%;
+transition:.3s;
+}
+
+.question-box{
+background:#141d31;
+padding:20px;
+border-radius:22px;
+box-shadow:0 10px 25px #0005;
+}
+
+.q-number{
+color:#ff9a00;
+font-size:13px;
+margin-bottom:12px;
+}
+
+.question{
+font-size:18px;
+line-height:1.55;
+font-weight:700;
+}
+
+.options{
+margin-top:20px;
+display:grid;
+gap:11px;
+}
+
+.option{
+width:100%;
+padding:15px;
+text-align:left;
+border:1px solid #ffffff12;
+background:#1b2740;
+color:white;
+border-radius:15px;
+font-size:14px;
+cursor:pointer;
+}
+
+.option:active{
+transform:scale(.98);
+}
+
+.option.correct{
+background:#146b43;
+border-color:#28d88b;
+}
+
+.option.wrong{
+background:#762f38;
+border-color:#ff6874;
+}
+
+.explanation{
+display:none;
+margin-top:16px;
+padding:14px;
+border-radius:14px;
+background:#0d1527;
+color:#b9c3d5;
+font-size:13px;
+line-height:1.6;
+}
+
+.next-btn{
+display:none;
+width:100%;
+margin-top:15px;
+padding:14px;
+border:0;
+border-radius:14px;
+background:linear-gradient(135deg,#ff9b00,#ff4c00);
+color:#fff;
+font-size:16px;
+font-weight:bold;
+}
+
+/* RESULT */
+
+.result{
+text-align:center;
+background:#151e34;
+border-radius:25px;
+padding:35px 20px;
+box-shadow:0 12px 30px #0006;
+}
+
+.result-icon{
+font-size:65px;
+margin-bottom:12px;
+}
+
+.score{
+font-size:42px;
+font-weight:900;
+color:#ff9b00;
+margin:15px;
+}
+
+.result button{
+margin-top:10px;
+width:100%;
+padding:14px;
+border:0;
+border-radius:14px;
+font-size:15px;
+font-weight:bold;
+background:#ff7100;
+color:#fff;
+}
+
+/* CLASSES */
+
+.class-list{
+display:grid;
+gap:13px;
+}
+
+.class-card{
+padding:20px;
+border-radius:20px;
+background:linear-gradient(135deg,#172642,#11182b);
+border:1px solid #ffffff10;
+}
+
+.class-number{
+font-size:30px;
+margin-bottom:10px;
+}
+
+.class-card h3{
+font-size:18px;
+}
+
+.class-card p{
+color:#8f9ab0;
+font-size:13px;
+margin-top:5px;
+}
+
+/* COMING */
+
+.coming{
+text-align:center;
+padding:45px 20px;
+border-radius:24px;
+background:#141d31;
+}
+
+.coming-icon{
+font-size:60px;
+margin-bottom:15px;
+}
+
+.coming p{
+margin-top:8px;
+color:#929db1;
+line-height:1.6;
+}
+
+/* NAV */
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:650px;
+height:67px;
+background:#0b1120ee;
+backdrop-filter:blur(15px);
+border-top:1px solid #ffffff12;
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:100;
+}
+
+.nav-btn{
+background:none;
+border:0;
+color:#7e899e;
+font-size:10px;
+cursor:pointer;
+}
+
+.nav-btn span{
+display:block;
+font-size:22px;
+margin-bottom:3px;
+}
+
+.nav-btn.active{
+color:#ff9200;
+}
+
+.small-note{
+font-size:11px;
+color:#7f8aa0;
+text-align:center;
+margin-top:18px;
+line-height:1.5;
+}
+
+@media(max-width:380px){
+
+.home-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="logo">📚</div>
+
+<h1>KOKU STUDY HUB</h1>
+
+<p>Rajasthan • Quiz • Classes • Notes</p>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- ================= HOME ================= -->
+
+<section id="homePage" class="page active">
+
+<div class="welcome">
+
+<h2>👋 स्वागत है!</h2>
+
+<p>
+अपनी तैयारी को स्मार्ट बनाएं।
+</p>
+
+</div>
+
+<div class="home-grid">
+
+<div class="card" onclick="openPage('quizPage')">
+<div class="icon">🏰</div>
+<h3>Rajasthan Quiz</h3>
+<p>कठिन Topic Wise Quiz</p>
+</div>
+
+<div class="card" onclick="openPage('classesPage')">
+<div class="icon">🎓</div>
+<h3>Classes</h3>
+<p>Online Classes</p>
+</div>
+
+<div class="card" onclick="openPage('notesPage')">
+<div class="icon">📄</div>
+<h3>Notes / PDF</h3>
+<p>Study Material</p>
+</div>
+
+<div class="card" onclick="openPage('videosPage')">
+<div class="icon">🎥</div>
+<h3>Video Classes</h3>
+<p>Video Learning</p>
+</div>
+
+<div class="card" onclick="openPage('linksPage')">
+<div class="icon">🔗</div>
+<h3>Important Links</h3>
+<p>Useful Resources</p>
+</div>
+
+<div class="card" onclick="openPage('aboutPage')">
+<div class="icon">⭐</div>
+<h3>About</h3>
+<p>KOKU STUDY HUB</p>
+</div>
+
+</div>
 
+</section>
 
-      const q = quizData[currentQuestion];
 
-      questionElement.innerHTML =
-        "प्रश्न " +
-        (currentQuestion + 1) +
-        " / " +
-        quizData.length +
-        "<br><br>" +
-        q.question;
+<!-- ================= TOPICS ================= -->
 
+<section id="quizPage" class="page">
 
-      optionsElement.innerHTML = "";
+<div class="page-title">
 
-      resultElement.innerHTML = "";
+<button class="back" onclick="openPage('homePage')">←</button>
 
-      nextButton.style.display = "none";
+<h2>🏰 Rajasthan Quiz</h2>
 
-      answered = false;
+</div>
 
+<div id="topicList" class="topic-list"></div>
 
-      q.options.forEach(function(option, index) {
+</section>
 
-        const button =
-          document.createElement("button");
 
-        button.className = "option";
+<!-- ================= QUIZ LIST ================= -->
 
-        button.innerText =
-          option;
+<section id="quizListPage" class="page">
 
-        button.onclick = function() {
+<div class="page-title">
 
-          checkAnswer(index, button);
+<button class="back" onclick="openPage('quizPage')">←</button>
 
-        };
+<h2 id="quizListTitle">Quiz</h2>
 
-        optionsElement.appendChild(button);
+</div>
 
-      });
+<div id="quizSets"></div>
 
-    }
+</section>
 
 
-    function checkAnswer(selected, clickedButton) {
+<!-- ================= QUIZ ================= -->
 
-      if (answered) {
-        return;
-      }
+<section id="questionPage" class="page">
 
-      answered = true;
+<div class="page-title">
 
-      const correct =
-        quizData[currentQuestion].answer;
+<button class="back" onclick="openPage('quizListPage')">←</button>
 
+<h2 id="quizTitle">Quiz</h2>
 
-      const buttons =
-        document.querySelectorAll(".option");
+</div>
 
+<div class="progress">
 
-      buttons.forEach(function(button) {
-        button.disabled = true;
-      });
+<div id="progressBar" class="progress-bar"></div>
 
+</div>
 
-      if (selected === correct) {
+<div class="question-box">
 
-        score++;
+<div id="qNumber" class="q-number"></div>
 
-        clickedButton.innerText += " ✅";
+<div id="questionText" class="question"></div>
 
-        document.getElementById("result").innerHTML =
-          "🎉 सही उत्तर!";
+<div id="options" class="options"></div>
 
-      } else {
+<div id="explanation" class="explanation"></div>
 
-        clickedButton.innerText += " ❌";
+<button id="nextBtn" class="next-btn" onclick="nextQuestion()">
+अगला प्रश्न →
+</button>
 
-        buttons[correct].innerText += " ✅";
+</div>
 
-        document.getElementById("result").innerHTML =
-          "❌ गलत उत्तर!";
+</section>
 
-      }
 
+<!-- ================= RESULT ================= -->
 
-      document.getElementById("nextBtn").style.display =
-        "block";
+<section id="resultPage" class="page">
 
-    }
+<div class="result">
 
+<div class="result-icon">🏆</div>
 
-    function nextQuestion() {
+<h2>Quiz पूरा हुआ!</h2>
 
-      currentQuestion++;
+<div id="scoreText" class="score">0/0</div>
 
-      if (currentQuestion < quizData.length) {
+<p id="resultMessage"></p>
 
-        loadQuestion();
+<button onclick="restartQuiz()">
+🔄 फिर से Quiz दें
+</button>
 
-      } else {
+<button onclick="openPage('quizPage')">
+📚 दूसरे Topic पर जाएँ
+</button>
 
-        showQuizResult();
+</div>
 
-      }
+</section>
 
-    }
 
+<!-- ================= CLASSES ================= -->
 
-    function showQuizResult() {
+<section id="classesPage" class="page">
 
-      document.getElementById("question").innerHTML =
-        "🎉 Quiz पूरा हो गया!";
+<div class="page-title">
 
-      document.getElementById("options").innerHTML = "";
+<button class="back" onclick="openPage('homePage')">←</button>
 
-      document.getElementById("result").innerHTML =
-        "आपका स्कोर: " +
-        score +
-        " / " +
-        quizData.length;
+<h2>🎓 Classes</h2>
 
-      const nextButton =
-        document.getElementById("nextBtn");
+</div>
 
-      nextButton.innerText =
-        "🔄 Quiz फिर से शुरू करें";
+<div class="class-list">
 
-      nextButton.style.display =
-        "block";
+<div class="class-card">
+<div class="class-number">📘 01</div>
+<h3>Class 1</h3>
+<p>Study Material & Classes</p>
+</div>
 
-      nextButton.onclick = function() {
+<div class="class-card">
+<div class="class-number">📗 02</div>
+<h3>Class 2</h3>
+<p>Study Material & Classes</p>
+</div>
 
-        nextButton.innerText =
-          "अगला प्रश्न ➡️";
+<div class="class-card">
+<div class="class-number">📙 03</div>
+<h3>Class 3</h3>
+<p>Study Material & Classes</p>
+</div>
 
-        startQuiz();
+<div class="class-card">
+<div class="class-number">📕 04</div>
+<h3>Class 4</h3>
+<p>Study Material & Classes</p>
+</div>
 
-      };
+<div class="class-card">
+<div class="class-number">📒 05</div>
+<h3>Class 5</h3>
+<p>Study Material & Classes</p>
+</div>
 
-    }
+</div>
 
-  </script>
+</section>
 
-</body>
-</html>
+
+<!-- ================= NOTES ================= -->
+
+<section id="notesPage" class="page">
+
+<div class="page-title">
+
+<button class="back" onclick="openPage('homePage')">←</button>
+
+<h2>📄 Notes / PDF</h2>
+
+</div>
+
+<div class="coming">
+
+<div class="coming-icon">📚</div>
+
+<h2>Notes Section</h2>
+
+<p>
+यहाँ Rajasthan और Classes के
+PDF एवं Notes जोड़े जाएंगे।
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= VIDEOS ================= -->
+
+<section id="videosPage" class="page">
+
+<div class="page-title">
+
+<button class="back" onclick="openPage('homePage')">←</button>
+
+<h2>🎥 Video Classes</h2>
+
+</div>
+
+<div class="coming">
+
+<div class="coming-icon">▶️</div>
+
+<h2>Video Classes</h2>
+
+<p>
+यहाँ आपकी YouTube या अन्य
+Video Classes जोड़ी जाएंगी।
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= LINKS ================= -->
+
+<section id="linksPage" class="page">
+
+<div class="page-title">
+
+<button class="back" onclick="openPage('homePage')">←</button>
+
+<h2>🔗 Important Links</h2>
+
+</div>
+
+<div class="coming">
+
+<div class="coming-icon">🔗</div>
+
+<h2>Important Links</h2>
+
+<p>
+यहाँ आपके जरूरी Links जोड़े जाएंगे।
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="aboutPage" class="page">
+
+<div class="page-title">
+
+<button class="back" onclick="openPage('homePage')">←</button>
+
+<h2>⭐ About</h2>
+
+</div>
+
+<div class="coming">
+
+<div class="coming-icon">📚</div>
+
+<h2>KOKU STUDY HUB</h2>
+
+<p>
+Rajasthan Quiz, Classes, Notes और
+Study Material के लिए आपका Digital
+Study Platform.
+</p>
+
+</div>
+
+</section>
+
+
+<div class="small-note">
+KOKU STUDY HUB • Rajasthan Education Platform
+</div>
+
+</main>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+<button class="nav-btn active" onclick="openPage('homePage')">
+<span>🏠</span>
+Home
+</button>
+
+<button class="nav-btn" onclick="openPage('quizPage')">
+<span>🏰</span>
+Quiz
+</button>
+
+<button class="nav-btn" onclick="openPage('classesPage')">
+<span>🎓</span>
+Classes
+</button>
+
+<button class="nav-btn" onclick="openPage('notesPage')">
+<span>📄</span>
+Notes
+</button>
+
+</nav>
+
+
+<script>
+
+/* =========================================
+TELEGRAM
+========================================= */
+
+if(window.Telegram && Telegram.WebApp){
+
+Telegram.WebApp.ready();
+
+Telegram.WebApp.expand();
+
+}
+
+
+/* =========================================
+RAJASTHAN TOPICS
+========================================= */
+
+const topics = [
+
+{
+id:"history",
+icon:"🏛️",
+title:"राजस्थान का इतिहास",
+desc:"कठिन इतिहास प्रश्न"
+},
+
+{
+id:"geography",
+icon:"🗺️",
+title:"राजस्थान का भूगोल",
+desc:"उच्च स्तर के भूगोल प्रश्न"
+},
+
+{
+id:"culture",
+icon:"🎨",
+title:"कला एवं संस्कृति",
+desc:"कला एवं संस्कृति"
+},
+
+{
+id:"dance",
+icon:"💃",
+title:"लोक नृत्य एवं संगीत",
+desc:"लोक कला एवं संगीत"
+},
+
+{
+id:"forts",
+icon:"🏰",
+title:"किले एवं महल",
+desc:"इतिहास एवं स्थापत्य"
+},
+
+{
+id:"rivers",
+icon:"🌊",
+title:"नदियाँ एवं झीलें",
+desc:"जल एवं अपवाह तंत्र"
+},
+
+{
+id:"wildlife",
+icon:"🐅",
+title:"वन्यजीव",
+desc:"अभयारण्य एवं राष्ट्रीय उद्यान"
+},
+
+{
+id:"festivals",
+icon:"🎉",
+title:"मेले एवं त्योहार",
+desc:"राजस्थान के प्रमुख मेले"
+},
+
+{
+id:"polity",
+icon:"⚖️",
+title:"राजस्थान राजव्यवस्था",
+desc:"संविधान एवं प्रशासन"
+},
+
+{
+id:"economy",
+icon:"💰",
+title:"राजस्थान अर्थव्यवस्था",
+desc:"कृषि, उद्योग एवं खनिज"
+},
+
+{
+id:"gk",
+icon:"📚",
+title:"Rajasthan GK",
+desc:"Mixed कठिन प्रश्न"
+}
+
+];
+
+
+/* =========================================
+QUIZ DATABASE
+
+हर Topic में 2 कठिन प्रश्न।
+बाद में इसी structure में और प्रश्न जोड़ेंगे।
+========================================= */
+
+const quizData = {
+
+
+history:{
+
+title:"राजस्थान का इतिहास",
+
+sets:[
+
+{
+title:"इतिहास Challenge - 1",
+questions:[
+
+{
+q:"जयपुर नगर की स्थापना किस वर्ष जयसिंह द्वितीय ने की थी?",
+options:[
+"1721",
+"1727",
+"1732",
+"1740"
+],
+answer:1,
+explain:"जयपुर की स्थापना 1727 में आमेर के शासक जयसिंह द्वितीय ने की थी।"
+},
+
+{
+q:"आमेर से नई राजधानी जयपुर स्थानांतरित करने के प्रमुख कारणों में कौन-सा आधिकारिक राजस्थान पर्यटन विवरण में दिया गया है?",
+options:[
+"समुद्री व्यापार में वृद्धि",
+"जनसंख्या वृद्धि और पानी की कमी",
+"खनिज संसाधनों की कमी",
+"मराठा आक्रमण"
+],
+answer:1,
+explain:"राजस्थान पर्यटन के अनुसार बढ़ती आबादी और पानी की कमी के कारण जयसिंह द्वितीय ने राजधानी आमेर से जयपुर स्थानांतरित की।"
+}
+
+]
+}
+
+]
+
+},
+
+
+geography:{
+
+title:"राजस्थान का भूगोल",
+
+sets:[
+
+{
+title:"भूगोल Master Quiz - 1",
+questions:[
+
+{
+q:"राजस्थान के किस जिले से कर्क रेखा गुजरती है?",
+options:[
+"जैसलमेर",
+"बीकानेर",
+"बांसवाड़ा",
+"अजमेर"
+],
+answer:2,
+explain:"राजस्थान फाउंडेशन के अनुसार कर्क रेखा राजस्थान के बांसवाड़ा जिले से गुजरती है।"
+},
+
+{
+q:"अरावली पर्वतमाला राजस्थान के भूगोल में किस महत्वपूर्ण भूमिका से जुड़ी है?",
+options:[
+"यह थार मरुस्थल की जलवायु एवं भू-आकृतिक सीमा से जुड़ी है",
+"यह केवल पूर्वी सीमा बनाती है",
+"यह राजस्थान की पश्चिमी अंतरराष्ट्रीय सीमा है",
+"यह केवल तटीय मैदान बनाती है"
+],
+answer:0,
+explain:"राजस्थान फाउंडेशन अरावली को थार मरुस्थल की जलवायु और भू-आकृतिक सीमा से जोड़ता है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+culture:{
+
+title:"कला एवं संस्कृति",
+
+sets:[
+
+{
+title:"कला संस्कृति कठिन Quiz - 1",
+questions:[
+
+{
+q:"राजस्थान की सांस्कृतिक पहचान के संदर्भ में आधिकारिक पर्यटन सामग्री किस संयोजन को विशेष रूप से रेखांकित करती है?",
+options:[
+"कला, संगीत और नृत्य",
+"केवल आधुनिक सिनेमा",
+"केवल औद्योगिक उत्पादन",
+"केवल समुद्री व्यापार"
+],
+answer:0,
+explain:"राजस्थान पर्यटन की आधिकारिक सामग्री राज्य की संस्कृति में कला, संगीत और नृत्य की गहरी भूमिका बताती है।"
+},
+
+{
+q:"राजस्थान की पारंपरिक शिल्प परंपरा में निम्न में से कौन-सा पदार्थ आधिकारिक पर्यटन विवरण में सूचीबद्ध है?",
+options:[
+"लकड़ी",
+"रबर",
+"कोयला गैस",
+"पेट्रोलियम"
+],
+answer:0,
+explain:"राजस्थान पर्यटन के अनुसार राज्य की craft industry में लकड़ी सहित अनेक पारंपरिक सामग्रियों का उपयोग होता है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+dance:{
+
+title:"लोक नृत्य एवं संगीत",
+
+sets:[
+
+{
+title:"लोक कला Challenge - 1",
+questions:[
+
+{
+q:"राजस्थान की लोक-संगीत परंपरा के संदर्भ में आधिकारिक पर्यटन सामग्री किन गायन परंपराओं का उल्लेख करती है?",
+options:[
+"लंगा-मांगणियार",
+"केवल ध्रुपद घराना",
+"केवल कर्नाटक संगीत",
+"केवल कव्वाली"
+],
+answer:0,
+explain:"राजस्थान पर्यटन की सामग्री लंगा-मांगणियार गायन परंपरा को राजस्थान की लोक सांस्कृतिक विरासत से जोड़ती है।"
+},
+
+{
+q:"निम्न में से कौन राजस्थान की प्रसिद्ध लोकनृत्य परंपराओं में शामिल है?",
+options:[
+"कालबेलिया",
+"कथकली",
+"मोहिनीअट्टम",
+"सत्रिया"
+],
+answer:0,
+explain:"कालबेलिया राजस्थान की प्रसिद्ध लोकनृत्य परंपरा है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+forts:{
+
+title:"किले एवं महल",
+
+sets:[
+
+{
+title:"Fort & Palace Hard Quiz - 1",
+questions:[
+
+{
+q:"आमेर महल के निर्माण का आरंभ 1592 में किस शासक से जोड़ा जाता है?",
+options:[
+"मानसिंह प्रथम",
+"जयसिंह द्वितीय",
+"सवाई जयसिंह तृतीय",
+"राणा सांगा"
+],
+answer:0,
+explain:"राजस्थान पर्यटन के अनुसार आमेर महल का निर्माण 1592 में राजा मानसिंह प्रथम से जोड़ा जाता है।"
+},
+
+{
+q:"कुम्भलगढ़ का निर्माण किस शासक से संबंधित है?",
+options:[
+"राणा कुम्भा",
+"महाराणा प्रताप",
+"राणा सांगा",
+"जयसिंह द्वितीय"
+],
+answer:0,
+explain:"राजस्थान पर्यटन कुम्भलगढ़ को राणा कुम्भा द्वारा निर्मित बताता है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+rivers:{
+
+title:"नदियाँ एवं झीलें",
+
+sets:[
+
+{
+title:"Rivers & Lakes Hard Quiz - 1",
+questions:[
+
+{
+q:"सांभर झील की प्रमुख भौगोलिक विशेषता क्या है?",
+options:[
+"यह अंतर्देशीय खारे पानी की झील है",
+"यह हिमनदीय झील है",
+"यह समुद्री लैगून है",
+"यह ज्वालामुखीय क्रेटर झील है"
+],
+answer:0,
+explain:"सांभर राजस्थान की प्रमुख अंतर्देशीय खारे पानी की झील के रूप में जानी जाती है।"
+},
+
+{
+q:"चंबल नदी राजस्थान के किस व्यापक भौगोलिक क्षेत्र से विशेष रूप से जुड़ी है?",
+options:[
+"दक्षिण-पूर्वी राजस्थान",
+"पश्चिमी थार",
+"उत्तर-पश्चिमी मरुस्थल",
+"केवल शेखावाटी"
+],
+answer:0,
+explain:"चंबल राजस्थान के दक्षिण-पूर्वी भाग की प्रमुख नदी प्रणाली से संबंधित है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+wildlife:{
+
+title:"वन्यजीव एवं राष्ट्रीय उद्यान",
+
+sets:[
+
+{
+title:"Wildlife Hard Quiz - 1",
+questions:[
+
+{
+q:"रणथंभौर किस प्रकार के संरक्षित क्षेत्र के लिए विशेष रूप से प्रसिद्ध है?",
+options:[
+"बाघ संरक्षण",
+"समुद्री जैव विविधता",
+"हिम तेंदुआ संरक्षण",
+"मैंग्रोव संरक्षण"
+],
+answer:0,
+explain:"रणथंभौर राजस्थान के प्रमुख Tiger Reserve क्षेत्रों में से एक है।"
+},
+
+{
+q:"भरतपुर का प्रसिद्ध पक्षी क्षेत्र किस नाम से जाना जाता है?",
+options:[
+"केवलादेव",
+"सरिस्का",
+"रणथंभौर",
+"डेजर्ट नेशनल पार्क"
+],
+answer:0,
+explain:"भरतपुर का प्रसिद्ध पक्षी क्षेत्र केवलादेव राष्ट्रीय उद्यान के नाम से जाना जाता है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+festivals:{
+
+title:"मेले एवं त्योहार",
+
+sets:[
+
+{
+title:"Fairs & Festivals Hard Quiz - 1",
+questions:[
+
+{
+q:"पुष्कर किस प्रकार की सांस्कृतिक पहचान के लिए विशेष रूप से प्रसिद्ध है?",
+options:[
+"मेले और उत्सव",
+"समुद्री बंदरगाह",
+"चाय बागान",
+"हिमालयी पर्यटन"
+],
+answer:0,
+explain:"राजस्थान पर्यटन पुष्कर को fairs and festivities से विशेष रूप से जोड़ता है।"
+},
+
+{
+q:"राजस्थान की सांस्कृतिक पहचान में मेलों और त्योहारों की क्या भूमिका बताई गई है?",
+options:[
+"वे राज्य की जीवंत सांस्कृतिक परंपराओं का हिस्सा हैं",
+"उनका कोई सांस्कृतिक संबंध नहीं है",
+"वे केवल औद्योगिक आयोजन हैं",
+"वे केवल खेल प्रतियोगिताएँ हैं"
+],
+answer:0,
+explain:"राजस्थान फाउंडेशन मेलों और त्योहारों को राज्य की रंगीन एवं जीवंत संस्कृति का प्रतिबिंब बताता है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+polity:{
+
+title:"राजस्थान राजव्यवस्था",
+
+sets:[
+
+{
+title:"Polity Hard Quiz - 1",
+questions:[
+
+{
+q:"राजस्थान में पंचायती राज व्यवस्था का शुभारंभ किस स्थान से जुड़ा है?",
+options:[
+"नागौर",
+"जयपुर",
+"उदयपुर",
+"कोटा"
+],
+answer:0,
+explain:"राजस्थान में पंचायती राज व्यवस्था के औपचारिक शुभारंभ को नागौर से जोड़ा जाता है।"
+},
+
+{
+q:"राजस्थान उच्च न्यायालय की मुख्य पीठ किस शहर में है?",
+options:[
+"जयपुर",
+"जोधपुर",
+"अजमेर",
+"कोटा"
+],
+answer:1,
+explain:"राजस्थान उच्च न्यायालय की मुख्य पीठ जोधपुर में स्थित है तथा जयपुर में पीठ है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+economy:{
+
+title:"राजस्थान अर्थव्यवस्था",
+
+sets:[
+
+{
+title:"Economy Hard Quiz - 1",
+questions:[
+
+{
+q:"मकराना किस खनिज/पत्थर के लिए विशेष रूप से प्रसिद्ध है?",
+options:[
+"संगमरमर",
+"कोयला",
+"पेट्रोलियम",
+"लौह अयस्क"
+],
+answer:0,
+explain:"मकराना राजस्थान के प्रसिद्ध संगमरमर उत्पादन क्षेत्र के रूप में जाना जाता है।"
+},
+
+{
+q:"खेतड़ी क्षेत्र किस प्रमुख खनिज से संबंधित है?",
+options:[
+"तांबा",
+"सोना",
+"हीरा",
+"यूरेनियम"
+],
+answer:0,
+explain:"खेतड़ी क्षेत्र तांबा खनन के लिए प्रसिद्ध है।"
+}
+
+]
+}
+
+]
+
+},
+
+
+gk:{
+
+title:"Rajasthan General Knowledge",
+
+sets:[
+
+{
+title:"Rajasthan GK Ultimate - 1",
+questions:[
+
+{
+q:"राजस्थान का भौगोलिक क्षेत्रफल लगभग कितना है?",
+options:[
+"2.42 लाख वर्ग किमी",
+"3.42 लाख वर्ग किमी",
+"4.42 लाख वर्ग किमी",
+"5.42 लाख वर्ग किमी"
+],
+answer:1,
+explain:"राजस्थान फाउंडेशन के अनुसार राज्य का क्षेत्रफल लगभग 3,42,239 वर्ग किमी है।"
+},
+
+{
+q:"जयपुर को किस नाम से प्रसिद्ध रूप से जाना जाता है?",
+options:[
+"नीला शहर",
+"गुलाबी शहर",
+"स्वर्ण नगरी",
+"झीलों की नगरी"
+],
+answer:1,
+explain:"राजस्थान पर
