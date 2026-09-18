@@ -113,6 +113,27 @@ button{font:inherit}
 }
 .info-row:last-child{border-bottom:0}
 
+.topic-card{
+ cursor:pointer;
+ transition:.15s;
+}
+.topic-card:active{
+ transform:scale(.98);
+}
+.topic-number{
+ font-size:13px;
+ opacity:.6;
+ margin-bottom:5px;
+}
+.topic-card h3{
+ margin:4px 0;
+ font-size:18px;
+}
+.topic-count{
+ opacity:.65;
+ font-size:13px;
+}
+
 .timer{
  position:sticky;
  top:5px;
@@ -142,8 +163,17 @@ button{font:inherit}
  transition:.2s;
 }
 
-.question-no{font-size:13px;opacity:.65;margin-bottom:8px}
-.question{font-size:20px;line-height:1.55;font-weight:800}
+.question-no{
+ font-size:13px;
+ opacity:.65;
+ margin-bottom:8px;
+}
+.question{
+ font-size:20px;
+ line-height:1.55;
+ font-weight:800;
+ white-space:pre-line;
+}
 
 .option{
  width:100%;
@@ -155,6 +185,7 @@ button{font:inherit}
  color:#fff;
  background:#101827;
  cursor:pointer;
+ line-height:1.45;
 }
 .option.selected{
  background:linear-gradient(135deg,#1d4ed8,#6d28d9);
@@ -178,7 +209,11 @@ button{font:inherit}
  padding:13px;
  text-align:center;
 }
-.stat b{display:block;font-size:23px;margin-bottom:4px}
+.stat b{
+ display:block;
+ font-size:23px;
+ margin-bottom:4px;
+}
 
 .review-card{
  padding:15px;
@@ -196,7 +231,10 @@ button{font:inherit}
  background:#0d1626;
  margin:9px 0;
 }
-.list-item b{display:block;margin-bottom:5px}
+.list-item b{
+ display:block;
+ margin-bottom:5px;
+}
 
 .schedule{
  width:100%;
@@ -232,7 +270,11 @@ button{font:inherit}
  opacity:.78;
  font-size:11px;
 }
-.bottom span{display:block;font-size:20px;margin-bottom:2px}
+.bottom span{
+ display:block;
+ font-size:20px;
+ margin-bottom:2px;
+}
 
 .hide{display:none!important}
 
@@ -253,7 +295,8 @@ button{font:inherit}
  <div class="tagline">RPSC • RSSB • Rajasthan Exam Preparation</div>
 </header>
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
+
 <section id="home" class="page active">
 
  <div class="hero">
@@ -268,7 +311,7 @@ button{font:inherit}
   <div class="card tile" onclick="showPage('quizInfo')">
    <div class="icon">📝</div>
    <b>RPSC Quiz</b>
-   <span class="muted">Mock Test</span>
+   <span class="muted">Topic Wise Test</span>
   </div>
 
   <div class="card tile" onclick="showPage('notes')">
@@ -313,138 +356,276 @@ button{font:inherit}
 
 </section>
 
-<!-- QUIZ INFO -->
+
+<!-- ================= QUIZ INFO ================= -->
+
 <section id="quizInfo" class="page">
 
- <button class="btn secondary back" onclick="showPage('home')">← Home</button>
+ <button class="btn secondary back" onclick="showPage('home')">
+  ← Home
+ </button>
+
+ <h2 class="section-title">📝 RPSC Topic Wise Test</h2>
 
  <div class="card">
-  <h2 class="section-title">📝 RPSC RAS Prelims Mock</h2>
+  <h3>📚 उपलब्ध विषय</h3>
+  <p class="muted">
+   किसी एक विषय को चुनें। प्रत्येक विषय में 25 कठिन RPSC स्तर के प्रश्न हैं।
+  </p>
+ </div>
 
-  <div class="info-row"><span>कुल प्रश्न</span><b>150</b></div>
-  <div class="info-row"><span>अधिकतम अंक</span><b>200</b></div>
-  <div class="info-row"><span>समय</span><b>3 घंटे</b></div>
-  <div class="info-row"><span>Negative Marking</span><b>1/3</b></div>
+ <!-- Topic 1 -->
+
+ <div class="card topic-card" onclick="selectTopic('राजस्थान इतिहास')">
+  <div class="topic-number">TOPIC 1</div>
+  <h3>🏛️ राजस्थान इतिहास</h3>
+  <div class="topic-count">25 प्रश्न • RPSC स्तर</div>
+  <button class="btn">Test शुरू करें →</button>
+ </div>
+
+ <!-- Topic 2 -->
+
+ <div class="card topic-card" onclick="selectTopic('राजस्थान कला एवं संस्कृति')">
+  <div class="topic-number">TOPIC 2</div>
+  <h3>🎨 राजस्थान कला एवं संस्कृति</h3>
+  <div class="topic-count">25 प्रश्न • RPSC स्तर</div>
+  <button class="btn">Test शुरू करें →</button>
+ </div>
+
+ <div class="card">
+  <div class="info-row">
+   <span>अभी उपलब्ध प्रश्न</span>
+   <b>50</b>
+  </div>
+
+  <div class="info-row">
+   <span>प्रत्येक Topic</span>
+   <b>25 प्रश्न</b>
+  </div>
+
+  <div class="info-row">
+   <span>Test Timer</span>
+   <b>30 मिनट</b>
+  </div>
 
   <p class="muted">
-   यह Quiz RAS Prelims के आधिकारिक 2026 scheme के अनुसार configured है।
+   टेस्ट के दौरान सही उत्तर या explanation नहीं दिखाई जाएगी।
+   Result के बाद Answer Review उपलब्ध होगा।
   </p>
-
-  <button class="btn" onclick="startQuiz()">🚀 Quiz शुरू करें</button>
  </div>
 
 </section>
 
-<!-- QUIZ -->
+
+<!-- ================= QUIZ ================= -->
+
 <section id="quiz" class="page">
 
- <div id="timer" class="timer">03:00:00</div>
+ <div id="timer" class="timer">30:00</div>
 
- <div class="progress"><i id="bar"></i></div>
+ <div class="progress">
+  <i id="bar"></i>
+ </div>
 
  <div class="card">
+
+  <div id="topicTitle"
+       class="muted"
+       style="margin-bottom:8px">
+  </div>
+
   <div id="qNo" class="question-no"></div>
+
   <div id="qText" class="question"></div>
+
   <div id="options"></div>
 
-  <button id="nextBtn" class="btn" onclick="nextQuestion()">
+  <button id="nextBtn"
+          class="btn"
+          onclick="nextQuestion()">
    अगला प्रश्न →
   </button>
+
  </div>
 
 </section>
 
-<!-- RESULT -->
+
+<!-- ================= RESULT ================= -->
+
 <section id="result" class="page">
 
  <div class="card">
-  <h2 class="section-title" style="text-align:center">🏆 Final Result</h2>
 
-  <div id="percent" class="score">0%</div>
+  <h2 class="section-title"
+      style="text-align:center">
+   🏆 Final Result
+  </h2>
 
-  <div class="stats">
-   <div class="stat"><b id="rCorrect">0</b>सही</div>
-   <div class="stat"><b id="rWrong">0</b>गलत</div>
-   <div class="stat"><b id="rSkip">0</b>छोड़े</div>
-   <div class="stat"><b id="rMarks">0</b>अंक</div>
+  <div id="resultTopic"
+       class="muted"
+       style="text-align:center">
   </div>
 
-  <button class="btn" onclick="showReview()">📖 Answer Review</button>
-  <button class="btn" onclick="restartQuiz()">🔁 Repeater</button>
-  <button class="btn secondary" onclick="showPage('home')">🏠 Home</button>
+  <div id="percent" class="score">
+   0%
+  </div>
+
+  <div class="stats">
+
+   <div class="stat">
+    <b id="rCorrect">0</b>
+    सही
+   </div>
+
+   <div class="stat">
+    <b id="rWrong">0</b>
+    गलत
+   </div>
+
+   <div class="stat">
+    <b id="rSkip">0</b>
+    छोड़े
+   </div>
+
+   <div class="stat">
+    <b id="rMarks">0/25</b>
+    अंक
+   </div>
+
+  </div>
+
+  <button class="btn"
+          onclick="showReview()">
+   📖 Answer Review
+  </button>
+
+  <button class="btn"
+          onclick="restartQuiz()">
+   🔁 Repeater
+  </button>
+
+  <button class="btn secondary"
+          onclick="showPage('quizInfo')">
+   📚 दूसरा Topic
+  </button>
+
+  <button class="btn secondary"
+          onclick="showPage('home')">
+   🏠 Home
+  </button>
+
  </div>
 
  <div id="review" class="hide"></div>
 
 </section>
 
-<!-- NOTES -->
+
+<!-- ================= NOTES ================= -->
+
 <section id="notes" class="page">
 
- <button class="btn secondary back" onclick="showPage('home')">← Home</button>
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
 
  <h2 class="section-title">📚 Notes / PDF</h2>
 
  <div class="card">
   <h3>🏛️ Rajasthan History</h3>
-  <p class="muted">History notes / PDF यहाँ जोड़ी जा सकती है।</p>
-  <button class="btn" onclick="openResource('PDF_LINK_1')">📄 Open PDF</button>
+  <p class="muted">
+   History notes / PDF यहाँ जोड़ी जा सकती है।
+  </p>
+  <button class="btn"
+          onclick="openResource('PDF_LINK_1')">
+   📄 Open PDF
+  </button>
  </div>
 
  <div class="card">
   <h3>🌍 Rajasthan Geography</h3>
-  <p class="muted">Geography notes / PDF यहाँ जोड़ी जा सकती है।</p>
-  <button class="btn" onclick="openResource('PDF_LINK_2')">📄 Open PDF</button>
+  <p class="muted">
+   Geography notes / PDF यहाँ जोड़ी जा सकती है।
+  </p>
+  <button class="btn"
+          onclick="openResource('PDF_LINK_2')">
+   📄 Open PDF
+  </button>
  </div>
 
  <div class="card">
   <h3>🎨 कला एवं संस्कृति</h3>
-  <p class="muted">Notes और study material.</p>
-  <button class="btn" onclick="alert('यहाँ आपकी PDF/Notes link जोड़ी जाएगी।')">
+  <p class="muted">
+   Notes और study material.
+  </p>
+  <button class="btn"
+          onclick="alert('यहाँ आपकी PDF/Notes link जोड़ी जाएगी।')">
    📖 Notes खोलें
   </button>
  </div>
 
 </section>
 
-<!-- VIDEOS -->
+
+<!-- ================= VIDEOS ================= -->
+
 <section id="videos" class="page">
 
- <button class="btn secondary back" onclick="showPage('home')">← Home</button>
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
 
  <h2 class="section-title">🎥 Video Classes</h2>
 
  <div class="list-item">
   <b>🏛️ Rajasthan History</b>
   <span class="muted">History video class</span>
-  <button class="btn" onclick="openResource('VIDEO_LINK_1')">▶️ Watch</button>
+  <button class="btn"
+          onclick="openResource('VIDEO_LINK_1')">
+   ▶️ Watch
+  </button>
  </div>
 
  <div class="list-item">
   <b>🌍 Rajasthan Geography</b>
   <span class="muted">Geography video class</span>
-  <button class="btn" onclick="openResource('VIDEO_LINK_2')">▶️ Watch</button>
+  <button class="btn"
+          onclick="openResource('VIDEO_LINK_2')">
+   ▶️ Watch
+  </button>
  </div>
 
  <div class="list-item">
   <b>🎨 Rajasthan Art & Culture</b>
   <span class="muted">Art and culture class</span>
-  <button class="btn" onclick="openResource('VIDEO_LINK_3')">▶️ Watch</button>
+  <button class="btn"
+          onclick="openResource('VIDEO_LINK_3')">
+   ▶️ Watch
+  </button>
  </div>
 
 </section>
 
-<!-- GUIDE -->
+
+<!-- ================= GUIDE ================= -->
+
 <section id="guide" class="page">
 
- <button class="btn secondary back" onclick="showPage('home')">← Home</button>
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
 
  <h2 class="section-title">🧭 Student Guide</h2>
 
  <div class="card">
   <h3>1️⃣ पहले Syllabus समझें</h3>
   <p class="muted">
-   बिना syllabus समझे random पढ़ाई न करें। Topic को छोटे हिस्सों में बाँटें।
+   बिना syllabus समझे random पढ़ाई न करें।
+   Topic को छोटे हिस्सों में बाँटें।
   </p>
  </div>
 
@@ -472,21 +653,30 @@ button{font:inherit}
  <div class="card">
   <h3>5️⃣ Revision सबसे जरूरी</h3>
   <p class="muted">
-   जो पढ़ा है उसे दोबारा revise करें। सिर्फ नया content पढ़ते न रहें।
+   जो पढ़ा है उसे दोबारा revise करें।
   </p>
  </div>
 
 </section>
 
-<!-- TIMETABLE -->
+
+<!-- ================= TIMETABLE ================= -->
+
 <section id="timetable" class="page">
 
- <button class="btn secondary back" onclick="showPage('home')">← Home</button>
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
 
- <h2 class="section-title">📅 8 घंटे का Daily Timetable</h2>
+ <h2 class="section-title">
+  📅 8 घंटे का Daily Timetable
+ </h2>
 
  <div class="card">
+
   <table class="schedule">
+
    <tr>
     <th>समय</th>
     <th>काम</th>
@@ -543,344 +733,1369 @@ button{font:inherit}
    </tr>
 
   </table>
+
  </div>
 
  <div class="card">
   <h3>🎯 Daily Rule</h3>
   <p class="muted">
-   पढ़ाई के घंटे पूरे करने से ज्यादा जरूरी है कि हर session का लक्ष्य पूरा हो।
+   पढ़ाई के घंटे पूरे करने से ज्यादा जरूरी है
+   कि हर session का लक्ष्य पूरा हो।
   </p>
  </div>
 
 </section>
 
-<!-- LINKS -->
+
+<!-- ================= LINKS ================= -->
+
 <section id="links" class="page">
 
- <button class="btn secondary back" onclick="showPage('home')">← Home</button>
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
 
- <h2 class="section-title">🔗 Important Links</h2>
+ <h2 class="section-title">
+  🔗 Important Links
+ </h2>
 
  <div class="list-item">
+
   <b>RPSC Official Website</b>
-  <span class="muted">Official notices, syllabus and updates</span>
-  <button class="btn" onclick="openResource('https://rpsc.rajasthan.gov.in/')">
+
+  <span class="muted">
+   Official notices, syllabus and updates
+  </span>
+
+  <button class="btn"
+          onclick="openResource('https://rpsc.rajasthan.gov.in/')">
    🔗 Open
   </button>
+
  </div>
 
  <div class="list-item">
+
   <b>Rajasthan Tourism</b>
-  <span class="muted">Rajasthan places and information</span>
-  <button class="btn" onclick="openResource('https://www.tourism.rajasthan.gov.in/')">
+
+  <span class="muted">
+   Rajasthan places and information
+  </span>
+
+  <button class="btn"
+          onclick="openResource('https://www.tourism.rajasthan.gov.in/')">
    🔗 Open
   </button>
+
  </div>
 
  <div class="list-item">
+
   <b>Other Useful Link</b>
-  <span class="muted">अपना link यहाँ डालें</span>
-  <button class="btn" onclick="openResource('YOUR_LINK_HERE')">
+
+  <span class="muted">
+   अपना link यहाँ डालें
+  </span>
+
+  <button class="btn"
+          onclick="openResource('YOUR_LINK_HERE')">
    🔗 Open
   </button>
+
  </div>
 
 </section>
 
 </div>
 
-<!-- BOTTOM NAV -->
+
+<!-- ================= BOTTOM NAV ================= -->
+
 <nav class="bottom">
- <button onclick="showPage('home')"><span>🏠</span>Home</button>
- <button onclick="showPage('quizInfo')"><span>📝</span>Quiz</button>
- <button onclick="showPage('notes')"><span>📚</span>Notes</button>
- <button onclick="showPage('guide')"><span>🧭</span>Guide</button>
+
+ <button onclick="showPage('home')">
+  <span>🏠</span>
+  Home
+ </button>
+
+ <button onclick="showPage('quizInfo')">
+  <span>📝</span>
+  Quiz
+ </button>
+
+ <button onclick="showPage('notes')">
+  <span>📚</span>
+  Notes
+ </button>
+
+ <button onclick="showPage('guide')">
+  <span>🧭</span>
+  Guide
+ </button>
+
 </nav>
+
 
 <script>
 
-/* Telegram */
+/* ================= TELEGRAM ================= */
+
 if(window.Telegram && Telegram.WebApp){
  Telegram.WebApp.ready();
  Telegram.WebApp.expand();
 }
 
-/* Navigation */
+
+/* ================= NAVIGATION ================= */
+
 function showPage(id){
+
  document.querySelectorAll('.page').forEach(p=>{
   p.classList.remove('active');
  });
- document.getElementById(id).classList.add('active');
+
+ const page=document.getElementById(id);
+
+ if(page){
+  page.classList.add('active');
+ }
+
  window.scrollTo(0,0);
 }
 
-/* Resources */
+
+/* ================= RESOURCES ================= */
+
 function openResource(url){
- if(!url || url.includes('YOUR_') || url.includes('PDF_LINK') || url.includes('VIDEO_LINK')){
+
+ if(
+  !url ||
+  url.includes('YOUR_') ||
+  url.includes('PDF_LINK') ||
+  url.includes('VIDEO_LINK')
+ ){
   alert('इस section में अभी वास्तविक link जोड़ना बाकी है।');
   return;
  }
+
  window.open(url,'_blank');
 }
 
-/* =========================
-   QUIZ DATA
-   =========================
-   केवल verified questions यहाँ रखें।
-   बाद में इसी array में questions
-   बढ़ाए जा सकते हैं।
-*/
 
-const QUESTIONS=[
+/* =========================================================
+   QUESTION BANK
+   TOPIC 1 + TOPIC 2
+   TOTAL = 50 QUESTIONS
+   ========================================================= */
 
- {
-  q:"राजस्थान की राजधानी कौन-सी है?",
-  o:["जयपुर","जोधपुर","उदयपुर","कोटा"],
-  a:0,
-  e:"जयपुर राजस्थान की राजधानी है।"
- },
+const QUESTIONS = [
 
- {
-  q:"राजस्थान दिवस कब मनाया जाता है?",
-  o:["26 जनवरी","30 मार्च","15 अगस्त","1 नवम्बर"],
-  a:1,
-  e:"राजस्थान दिवस 30 मार्च को मनाया जाता है।"
- },
+/* =========================================================
+   TOPIC 1 — RAJASTHAN HISTORY
+   Q1–25
+   ========================================================= */
 
- {
-  q:"जयपुर की स्थापना किसने की थी?",
-  o:["महाराणा प्रताप","सवाई जयसिंह द्वितीय","राणा सांगा","मानसिंह"],
-  a:1,
-  e:"जयपुर की स्थापना सवाई जयसिंह द्वितीय ने की थी।"
- },
+{
+ id:1,
+ topic:"राजस्थान इतिहास",
+ q:`राजस्थान के इतिहास के संदर्भ में निम्न कथनों पर विचार कीजिए—
 
- {
-  q:"केवलादेव राष्ट्रीय उद्यान किस जिले में स्थित है?",
-  o:["भरतपुर","अलवर","कोटा","चित्तौड़गढ़"],
-  a:0,
-  e:"केवलादेव राष्ट्रीय उद्यान भरतपुर में स्थित है।"
- },
+1. राजस्थान में राजपूत कुलों का प्रभाव लगभग 8वीं शताब्दी से स्पष्ट रूप से उभरता है।
 
- {
-  q:"राजस्थान भारत के किस भाग में स्थित है?",
-  o:["उत्तर-पश्चिम","दक्षिण-पूर्व","उत्तर-पूर्व","दक्षिण"],
-  a:0,
-  e:"राजस्थान भारत के उत्तर-पश्चिमी भाग में स्थित है।"
- }
+2. प्रतिहारों ने 8वीं से 10वीं शताब्दी के दौरान राजस्थान और उत्तर भारत के बड़े भाग पर प्रभाव रखा।
 
-];
+3. 11वीं–12वीं शताब्दी में चौहान, परमार और अन्य क्षेत्रीय शक्तियों के बीच प्रभुत्व-संघर्ष दिखाई देता है।
 
-/* Quiz state */
-let quiz=[];
-let current=0;
-let answers=[];
-let seconds=10800;
-let interval=null;
+सही कूट चुनिए।`,
+ o:[
+  "केवल 1 और 2",
+  "केवल 2 और 3",
+  "1, 2 और 3",
+  "केवल 1 और 3"
+ ],
+ a:2,
+ e:"तीनों कथन राजस्थान के प्रारंभिक मध्यकालीन राजनीतिक इतिहास के व्यापक विकास से संबंधित हैं।"
+},
 
-/* Start */
-function startQuiz(){
+{
+ id:2,
+ topic:"राजस्थान इतिहास",
+ q:"निम्न में से किसका संबंध शाकम्भरी के चौहानों से है?",
+ o:[
+  "वासुदेव",
+  "राणा कुम्भा",
+  "राव जोधा",
+  "राणा सांगा"
+ ],
+ a:0,
+ e:"वासुदेव को शाकम्भरी के चौहान वंश की प्रारंभिक परंपरा से जोड़ा जाता है।"
+},
 
- quiz=[...QUESTIONS];
+{
+ id:3,
+ topic:"राजस्थान इतिहास",
+ q:`निम्न कथनों पर विचार कीजिए—
 
- /*
-  प्रश्नों का क्रम हर attempt में बदल सकता है।
- */
- quiz.sort(()=>Math.random()-.5);
+1. प्रथम तराइन युद्ध 1191 ई. में हुआ।
 
- current=0;
- answers=new Array(quiz.length).fill(null);
- seconds=10800;
+2. इसमें पृथ्वीराज चौहान ने मुहम्मद गौरी को पराजित किया।
 
- showPage('quiz');
- startTimer();
- renderQuestion();
+3. द्वितीय तराइन युद्ध में पृथ्वीराज चौहान की विजय हुई।
+
+सही कूट चुनिए।`,
+ o:[
+  "केवल 1",
+  "1 और 2",
+  "2 और 3",
+  "1, 2 और 3"
+ ],
+ a:1,
+ e:"प्रथम तराइन युद्ध 1191 ई. में हुआ और पृथ्वीराज चौहान की विजय हुई; 1192 ई. के द्वितीय तराइन युद्ध में गौरी विजयी हुआ।"
+},
+
+{
+ id:4,
+ topic:"राजस्थान इतिहास",
+ q:"निम्न में से कौन-सा युग्म सही सुमेलित है?",
+ o:[
+  "हम्मीर देव — रणथम्भौर",
+  "राव जोधा — मेवाड़",
+  "राणा कुम्भा — मारवाड़",
+  "सवाई जयसिंह — बीकानेर"
+ ],
+ a:0,
+ e:"हम्मीर देव का संबंध रणथम्भौर के चौहान शासकों से था।"
+},
+
+{
+ id:5,
+ topic:"राजस्थान इतिहास",
+ q:"राजस्थान के मध्यकालीन इतिहास के संदर्भ में मेवाड़ के उत्कर्ष के साथ निम्न में से किस शासक का विशेष संबंध है?",
+ o:[
+  "राणा कुम्भा",
+  "राव बीका",
+  "राव मालदेव",
+  "सवाई जयसिंह"
+ ],
+ a:0,
+ e:"राणा कुम्भा मेवाड़ के प्रमुख शासकों में थे और उनके शासनकाल में राज्य की राजनीतिक एवं सांस्कृतिक प्रतिष्ठा बढ़ी।"
+},
+
+{
+ id:6,
+ topic:"राजस्थान इतिहास",
+ q:`निम्न कथनों पर विचार कीजिए—
+
+1. कुम्भलगढ़ दुर्ग का निर्माण 15वीं शताब्दी में राणा कुम्भा से संबंधित है।
+
+2. कुम्भलगढ़ महाराणा प्रताप की जन्मस्थली माना जाता है।
+
+3. यह अरावली क्षेत्र में स्थित है।
+
+सही कूट है—`,
+ o:[
+  "केवल 1 और 2",
+  "केवल 2 और 3",
+  "1, 2 और 3",
+  "केवल 1 और 3"
+ ],
+ a:2,
+ e:"कुम्भलगढ़ का निर्माण राणा कुम्भा के काल से संबंधित है, महाराणा प्रताप का जन्म कुम्भलगढ़ में माना जाता है और दुर्ग अरावली क्षेत्र में स्थित है।"
+},
+
+{
+ id:7,
+ topic:"राजस्थान इतिहास",
+ q:"निम्न में से किस शासक का संबंध मेवाड़ के राजनीतिक विस्तार और सांस्कृतिक संरक्षण दोनों से जोड़ा जाता है?",
+ o:[
+  "राणा कुम्भा",
+  "हम्मीर देव",
+  "राव बीका",
+  "पृथ्वीराज चौहान"
+ ],
+ a:0,
+ e:"राणा कुम्भा को मेवाड़ की राजनीतिक शक्ति तथा स्थापत्य-सांस्कृतिक संरक्षण दोनों के लिए जाना जाता है।"
+},
+
+{
+ id:8,
+ topic:"राजस्थान इतिहास",
+ q:"निम्नलिखित में से कौन-सा क्रम कालानुक्रमिक रूप से सही है?",
+ o:[
+  "पृथ्वीराज चौहान → राणा कुम्भा → राणा सांगा → महाराणा प्रताप",
+  "राणा कुम्भा → पृथ्वीराज चौहान → राणा सांगा → महाराणा प्रताप",
+  "राणा सांगा → पृथ्वीराज चौहान → राणा कुम्भा → महाराणा प्रताप",
+  "पृथ्वीराज चौहान → राणा सांगा → राणा कुम्भा → महाराणा प्रताप"
+ ],
+ a:0,
+ e:"पृथ्वीराज चौहान के बाद राणा कुम्भा, फिर राणा सांगा और उसके बाद महाराणा प्रताप का काल आता है।"
+},
+
+{
+ id:9,
+ topic:"राजस्थान इतिहास",
+ q:"राजस्थान में गुहिल/गुहिलोत परंपरा का प्रमुख ऐतिहासिक क्षेत्र कौन-सा था?",
+ o:[
+  "मेवाड़",
+  "मारवाड़",
+  "शेखावाटी",
+  "हाड़ौती"
+ ],
+ a:0,
+ e:"गुहिल या गुहिलोत परंपरा का प्रमुख संबंध मेवाड़ से रहा।"
+},
+
+{
+ id:10,
+ topic:"राजस्थान<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>KOKU STUDY HUB</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ font-family:Arial,"Noto Sans Devanagari",sans-serif;
+ color:#fff;
+ background:
+ radial-gradient(circle at 20% 10%,#243b75 0,transparent 28%),
+ radial-gradient(circle at 90% 20%,#4c1d70 0,transparent 25%),
+ linear-gradient(145deg,#050a13,#0b1220 50%,#101827);
+ min-height:100vh;
+}
+button{font:inherit}
+.app{max-width:720px;margin:auto;padding-bottom:90px}
+
+.header{
+ padding:22px 16px 18px;
+ text-align:center;
+ background:rgba(255,255,255,.045);
+ border-bottom:1px solid rgba(255,255,255,.08);
+ backdrop-filter:blur(16px);
+}
+.logo{
+ font-size:25px;
+ font-weight:900;
+ letter-spacing:1px;
+ text-shadow:0 4px 18px rgba(96,165,250,.35);
+}
+.tagline{font-size:12px;opacity:.65;margin-top:6px}
+
+.page{display:none;padding:16px}
+.page.active{display:block}
+
+.hero{
+ padding:22px;
+ border-radius:25px;
+ background:linear-gradient(145deg,rgba(37,99,235,.28),rgba(124,58,237,.18));
+ border:1px solid rgba(255,255,255,.1);
+ box-shadow:0 18px 40px rgba(0,0,0,.28);
+ margin-bottom:15px;
+}
+.hero h1{margin:0 0 8px;font-size:25px}
+.hero p{margin:0;line-height:1.55;opacity:.78}
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+.card{
+ background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+ border:1px solid rgba(255,255,255,.08);
+ border-radius:20px;
+ padding:17px;
+ margin-bottom:12px;
+ box-shadow:0 12px 30px rgba(0,0,0,.22);
+ backdrop-filter:blur(12px);
+}
+.tile{
+ min-height:125px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ text-align:center;
+ cursor:pointer;
+ transition:.15s;
+}
+.tile:active{transform:scale(.96)}
+.icon{font-size:35px;margin-bottom:9px}
+.tile b{font-size:16px}
+.muted{opacity:.65;font-size:13px;line-height:1.5}
+
+.btn{
+ width:100%;
+ padding:13px 15px;
+ margin-top:9px;
+ border:0;
+ border-radius:14px;
+ color:#fff;
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ font-weight:800;
+ box-shadow:0 8px 20px rgba(37,99,235,.22);
+ cursor:pointer;
+}
+.btn.secondary{background:rgba(255,255,255,.07);box-shadow:none}
+.btn.danger{background:#991b1b}
+
+.back{margin-bottom:10px}
+
+.section-title{
+ font-size:21px;
+ margin:4px 0 13px;
 }
 
-/* Timer */
-function startTimer(){
+.info-row{
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ padding:11px 0;
+ border-bottom:1px solid rgba(255,255,255,.07);
+}
+.info-row:last-child{border-bottom:0}
 
- clearInterval(interval);
- updateTimer();
-
- interval=setInterval(()=>{
-
-  seconds--;
-
-  updateTimer();
-
-  if(seconds<=0){
-   clearInterval(interval);
-   finishQuiz();
-  }
-
- },1000);
+.topic-card{
+ cursor:pointer;
+ transition:.15s;
+}
+.topic-card:active{
+ transform:scale(.98);
+}
+.topic-number{
+ font-size:13px;
+ opacity:.6;
+ margin-bottom:5px;
+}
+.topic-card h3{
+ margin:4px 0;
+ font-size:18px;
+}
+.topic-count{
+ opacity:.65;
+ font-size:13px;
 }
 
-function updateTimer(){
-
- const h=Math.floor(seconds/3600);
- const m=Math.floor((seconds%3600)/60);
- const s=seconds%60;
-
- document.getElementById('timer').textContent=
-  `${String(h).padStart(2,'0')}:`+
-  `${String(m).padStart(2,'0')}:`+
-  `${String(s).padStart(2,'0')}`;
+.timer{
+ position:sticky;
+ top:5px;
+ z-index:10;
+ text-align:center;
+ padding:11px;
+ border-radius:14px;
+ background:#8f1d1d;
+ font-size:20px;
+ font-weight:900;
+ margin-bottom:12px;
+ box-shadow:0 8px 22px rgba(0,0,0,.3);
 }
 
-/* Question */
-function renderQuestion(){
-
- const q=quiz[current];
-
- document.getElementById('qNo').textContent=
-  `प्रश्न ${current+1} / ${quiz.length}`;
-
- document.getElementById('qText').textContent=q.q;
-
- const box=document.getElementById('options');
- box.innerHTML='';
-
- q.o.forEach((text,i)=>{
-
-  const b=document.createElement('button');
-
-  b.className='option';
-
-  b.textContent=
-   `${String.fromCharCode(65+i)}. ${text}`;
-
-  if(answers[current]===i)
-   b.classList.add('selected');
-
-  b.onclick=()=>{
-   answers[current]=i;
-   renderQuestion();
-  };
-
-  box.appendChild(b);
- });
-
- document.getElementById('bar').style.width=
-  ((current+1)/quiz.length*100)+'%';
-
- document.getElementById('nextBtn').textContent=
-  current===quiz.length-1
-  ? 'टेस्ट समाप्त करें'
-  : 'अगला प्रश्न →';
+.progress{
+ height:7px;
+ border-radius:10px;
+ background:#202b3d;
+ overflow:hidden;
+ margin:10px 0 16px;
+}
+.progress i{
+ display:block;
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+ transition:.2s;
 }
 
-/* Next */
-function nextQuestion(){
-
- if(current<quiz.length-1){
-  current++;
-  renderQuestion();
- }else{
-  finishQuiz();
- }
+.question-no{
+ font-size:13px;
+ opacity:.65;
+ margin-bottom:8px;
+}
+.question{
+ font-size:20px;
+ line-height:1.55;
+ font-weight:800;
+ white-space:pre-line;
 }
 
-/* Final Result */
-function finishQuiz(){
-
- clearInterval(interval);
-
- let correct=0;
- let wrong=0;
- let skipped=0;
-
- /*
-  RAS scheme:
-  150 questions = 200 marks.
-  इसलिए प्रत्येक प्रश्न = 200/150.
-  Wrong = 1/3 of question marks.
- */
- const perQuestion=200/150;
-
- quiz.forEach((q,i)=>{
-
-  const user=answers[i];
-
-  if(user===null){
-   skipped++;
-  }
-  else if(user===q.a){
-   correct++;
-  }
-  else{
-   wrong++;
-  }
- });
-
- let marks=
-  (correct*perQuestion)-
-  (wrong*perQuestion/3);
-
- if(marks<0)marks=0;
-
- const percent=(marks/200)*100;
-
- document.getElementById('rCorrect').textContent=correct;
- document.getElementById('rWrong').textContent=wrong;
- document.getElementById('rSkip').textContent=skipped;
- document.getElementById('rMarks').textContent=marks.toFixed(2);
- document.getElementById('percent').textContent=
-  percent.toFixed(2)+'%';
-
- document.getElementById('review').classList.add('hide');
-
- showPage('result');
+.option{
+ width:100%;
+ text-align:left;
+ padding:14px;
+ margin-top:9px;
+ border:1px solid #334155;
+ border-radius:14px;
+ color:#fff;
+ background:#101827;
+ cursor:pointer;
+ line-height:1.45;
+}
+.option.selected{
+ background:linear-gradient(135deg,#1d4ed8,#6d28d9);
+ border-color:#60a5fa;
 }
 
-/* Review after final result */
-function showReview(){
+.score{
+ font-size:48px;
+ font-weight:900;
+ text-align:center;
+ margin:15px 0;
+}
+.stats{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+.stat{
+ background:#0d1626;
+ border-radius:15px;
+ padding:13px;
+ text-align:center;
+}
+.stat b{
+ display:block;
+ font-size:23px;
+ margin-bottom:4px;
+}
 
- const box=document.getElementById('review');
+.review-card{
+ padding:15px;
+ margin:10px 0;
+ background:#0d1626;
+ border-radius:15px;
+ line-height:1.5;
+}
+.good{color:#4ade80}
+.bad{color:#fb7185}
 
- box.classList.remove('hide');
+.list-item{
+ padding:15px;
+ border-radius:16px;
+ background:#0d1626;
+ margin:9px 0;
+}
+.list-item b{
+ display:block;
+ margin-bottom:5px;
+}
 
- box.innerHTML='<h3>📖 Answer Review</h3>';
+.schedule{
+ width:100%;
+ border-collapse:collapse;
+ font-size:13px;
+ overflow:hidden;
+}
+.schedule th,.schedule td{
+ padding:10px 7px;
+ border-bottom:1px solid rgba(255,255,255,.08);
+ text-align:left;
+ vertical-align:top;
+}
+.schedule th{opacity:.65}
 
- quiz.forEach((q,i)=>{
+.bottom{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ height:68px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ background:rgba(4,8,15,.96);
+ border-top:1px solid rgba(255,255,255,.08);
+ backdrop-filter:blur(14px);
+ z-index:50;
+}
+.bottom button{
+ border:0;
+ background:transparent;
+ color:#fff;
+ opacity:.78;
+ font-size:11px;
+}
+.bottom span{
+ display:block;
+ font-size:20px;
+ margin-bottom:2px;
+}
 
-  const user=answers[i];
+.hide{display:none!important}
 
-  let userText=
-   user===null
-   ? 'छोड़ा गया'
-   : q.o[user];
+@media(max-width:420px){
+ .grid{gap:9px}
+ .card{padding:14px}
+ .question{font-size:18px}
+}
+</style>
+</head>
 
-  const right=q.o[q.a];
+<body>
 
-  const cls=
-   user===q.a ? 'good' : 'bad';
+<div class="app">
 
-  box.innerHTML+=`
-   <div class="review-card">
-    <b>Q${i+1}. ${q.q}</b>
-    <p class="${cls}">
-     आपका उत्तर: ${userText}
-    </p>
-    <p>
-     सही उत्तर: <b>${right}</b>
-    </p>
-    <p class="muted">
-     ${q.e}
-    </p>
+<header class="header">
+ <div class="logo">KOKU STUDY HUB</div>
+ <div class="tagline">RPSC • RSSB • Rajasthan Exam Preparation</div>
+</header>
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page active">
+
+ <div class="hero">
+  <h1>👋 Welcome to KOKU STUDY HUB</h1>
+  <p>
+   पढ़िए, Practice कीजिए, अपना समय Manage कीजिए और अपनी तैयारी को Track कीजिए।
+  </p>
+ </div>
+
+ <div class="grid">
+
+  <div class="card tile" onclick="showPage('quizInfo')">
+   <div class="icon">📝</div>
+   <b>RPSC Quiz</b>
+   <span class="muted">Topic Wise Test</span>
+  </div>
+
+  <div class="card tile" onclick="showPage('notes')">
+   <div class="icon">📚</div>
+   <b>Notes / PDF</b>
+   <span class="muted">Study Material</span>
+  </div>
+
+  <div class="card tile" onclick="showPage('videos')">
+   <div class="icon">🎥</div>
+   <b>Video Classes</b>
+   <span class="muted">Video Learning</span>
+  </div>
+
+  <div class="card tile" onclick="showPage('guide')">
+   <div class="icon">🧭</div>
+   <b>Student Guide</b>
+   <span class="muted">क्या और कैसे पढ़ें</span>
+  </div>
+
+  <div class="card tile" onclick="showPage('timetable')">
+   <div class="icon">📅</div>
+   <b>8 Hour Timetable</b>
+   <span class="muted">Daily Plan</span>
+  </div>
+
+  <div class="card tile" onclick="showPage('links')">
+   <div class="icon">🔗</div>
+   <b>Important Links</b>
+   <span class="muted">Useful Resources</span>
+  </div>
+
+ </div>
+
+ <div class="card">
+  <h3>🎯 आज का लक्ष्य</h3>
+  <div class="info-row"><span>📖 Revision</span><b>2 घंटे</b></div>
+  <div class="info-row"><span>📝 MCQ Practice</span><b>50 प्रश्न</b></div>
+  <div class="info-row"><span>🔁 गलत प्रश्न</span><b>30 मिनट</b></div>
+  <div class="info-row"><span>🎥 Class</span><b>1 Session</b></div>
+ </div>
+
+</section>
+
+
+<!-- ================= QUIZ INFO ================= -->
+
+<section id="quizInfo" class="page">
+
+ <button class="btn secondary back" onclick="showPage('home')">
+  ← Home
+ </button>
+
+ <h2 class="section-title">📝 RPSC Topic Wise Test</h2>
+
+ <div class="card">
+  <h3>📚 उपलब्ध विषय</h3>
+  <p class="muted">
+   किसी एक विषय को चुनें। प्रत्येक विषय में 25 कठिन RPSC स्तर के प्रश्न हैं।
+  </p>
+ </div>
+
+ <!-- Topic 1 -->
+
+ <div class="card topic-card" onclick="selectTopic('राजस्थान इतिहास')">
+  <div class="topic-number">TOPIC 1</div>
+  <h3>🏛️ राजस्थान इतिहास</h3>
+  <div class="topic-count">25 प्रश्न • RPSC स्तर</div>
+  <button class="btn">Test शुरू करें →</button>
+ </div>
+
+ <!-- Topic 2 -->
+
+ <div class="card topic-card" onclick="selectTopic('राजस्थान कला एवं संस्कृति')">
+  <div class="topic-number">TOPIC 2</div>
+  <h3>🎨 राजस्थान कला एवं संस्कृति</h3>
+  <div class="topic-count">25 प्रश्न • RPSC स्तर</div>
+  <button class="btn">Test शुरू करें →</button>
+ </div>
+
+ <div class="card">
+  <div class="info-row">
+   <span>अभी उपलब्ध प्रश्न</span>
+   <b>50</b>
+  </div>
+
+  <div class="info-row">
+   <span>प्रत्येक Topic</span>
+   <b>25 प्रश्न</b>
+  </div>
+
+  <div class="info-row">
+   <span>Test Timer</span>
+   <b>30 मिनट</b>
+  </div>
+
+  <p class="muted">
+   टेस्ट के दौरान सही उत्तर या explanation नहीं दिखाई जाएगी।
+   Result के बाद Answer Review उपलब्ध होगा।
+  </p>
+ </div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section id="quiz" class="page">
+
+ <div id="timer" class="timer">30:00</div>
+
+ <div class="progress">
+  <i id="bar"></i>
+ </div>
+
+ <div class="card">
+
+  <div id="topicTitle"
+       class="muted"
+       style="margin-bottom:8px">
+  </div>
+
+  <div id="qNo" class="question-no"></div>
+
+  <div id="qText" class="question"></div>
+
+  <div id="options"></div>
+
+  <button id="nextBtn"
+          class="btn"
+          onclick="nextQuestion()">
+   अगला प्रश्न →
+  </button>
+
+ </div>
+
+</section>
+
+
+<!-- ================= RESULT ================= -->
+
+<section id="result" class="page">
+
+ <div class="card">
+
+  <h2 class="section-title"
+      style="text-align:center">
+   🏆 Final Result
+  </h2>
+
+  <div id="resultTopic"
+       class="muted"
+       style="text-align:center">
+  </div>
+
+  <div id="percent" class="score">
+   0%
+  </div>
+
+  <div class="stats">
+
+   <div class="stat">
+    <b id="rCorrect">0</b>
+    सही
    </div>
-  `;
+
+   <div class="stat">
+    <b id="rWrong">0</b>
+    गलत
+   </div>
+
+   <div class="stat">
+    <b id="rSkip">0</b>
+    छोड़े
+   </div>
+
+   <div class="stat">
+    <b id="rMarks">0/25</b>
+    अंक
+   </div>
+
+  </div>
+
+  <button class="btn"
+          onclick="showReview()">
+   📖 Answer Review
+  </button>
+
+  <button class="btn"
+          onclick="restartQuiz()">
+   🔁 Repeater
+  </button>
+
+  <button class="btn secondary"
+          onclick="showPage('quizInfo')">
+   📚 दूसरा Topic
+  </button>
+
+  <button class="btn secondary"
+          onclick="showPage('home')">
+   🏠 Home
+  </button>
+
+ </div>
+
+ <div id="review" class="hide"></div>
+
+</section>
+
+
+<!-- ================= NOTES ================= -->
+
+<section id="notes" class="page">
+
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
+
+ <h2 class="section-title">📚 Notes / PDF</h2>
+
+ <div class="card">
+  <h3>🏛️ Rajasthan History</h3>
+  <p class="muted">
+   History notes / PDF यहाँ जोड़ी जा सकती है।
+  </p>
+  <button class="btn"
+          onclick="openResource('PDF_LINK_1')">
+   📄 Open PDF
+  </button>
+ </div>
+
+ <div class="card">
+  <h3>🌍 Rajasthan Geography</h3>
+  <p class="muted">
+   Geography notes / PDF यहाँ जोड़ी जा सकती है।
+  </p>
+  <button class="btn"
+          onclick="openResource('PDF_LINK_2')">
+   📄 Open PDF
+  </button>
+ </div>
+
+ <div class="card">
+  <h3>🎨 कला एवं संस्कृति</h3>
+  <p class="muted">
+   Notes और study material.
+  </p>
+  <button class="btn"
+          onclick="alert('यहाँ आपकी PDF/Notes link जोड़ी जाएगी।')">
+   📖 Notes खोलें
+  </button>
+ </div>
+
+</section>
+
+
+<!-- ================= VIDEOS ================= -->
+
+<section id="videos" class="page">
+
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
+
+ <h2 class="section-title">🎥 Video Classes</h2>
+
+ <div class="list-item">
+  <b>🏛️ Rajasthan History</b>
+  <span class="muted">History video class</span>
+  <button class="btn"
+          onclick="openResource('VIDEO_LINK_1')">
+   ▶️ Watch
+  </button>
+ </div>
+
+ <div class="list-item">
+  <b>🌍 Rajasthan Geography</b>
+  <span class="muted">Geography video class</span>
+  <button class="btn"
+          onclick="openResource('VIDEO_LINK_2')">
+   ▶️ Watch
+  </button>
+ </div>
+
+ <div class="list-item">
+  <b>🎨 Rajasthan Art & Culture</b>
+  <span class="muted">Art and culture class</span>
+  <button class="btn"
+          onclick="openResource('VIDEO_LINK_3')">
+   ▶️ Watch
+  </button>
+ </div>
+
+</section>
+
+
+<!-- ================= GUIDE ================= -->
+
+<section id="guide" class="page">
+
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
+
+ <h2 class="section-title">🧭 Student Guide</h2>
+
+ <div class="card">
+  <h3>1️⃣ पहले Syllabus समझें</h3>
+  <p class="muted">
+   बिना syllabus समझे random पढ़ाई न करें।
+   Topic को छोटे हिस्सों में बाँटें।
+  </p>
+ </div>
+
+ <div class="card">
+  <h3>2️⃣ Notes पढ़ें</h3>
+  <p class="muted">
+   पहले concept पढ़ें, फिर उसी topic के MCQ लगाएँ।
+  </p>
+ </div>
+
+ <div class="card">
+  <h3>3️⃣ रोज़ MCQ करें</h3>
+  <p class="muted">
+   गलत प्रश्नों की अलग revision list बनाएँ।
+  </p>
+ </div>
+
+ <div class="card">
+  <h3>4️⃣ Weekly Mock दें</h3>
+  <p class="muted">
+   Timer लगाकर पूरा test दें और अंत में analysis करें।
+  </p>
+ </div>
+
+ <div class="card">
+  <h3>5️⃣ Revision सबसे जरूरी</h3>
+  <p class="muted">
+   जो पढ़ा है उसे दोबारा revise करें।
+  </p>
+ </div>
+
+</section>
+
+
+<!-- ================= TIMETABLE ================= -->
+
+<section id="timetable" class="page">
+
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
+
+ <h2 class="section-title">
+  📅 8 घंटे का Daily Timetable
+ </h2>
+
+ <div class="card">
+
+  <table class="schedule">
+
+   <tr>
+    <th>समय</th>
+    <th>काम</th>
+   </tr>
+
+   <tr>
+    <td>6:00–8:00</td>
+    <td>📖 Main Subject / New Topic</td>
+   </tr>
+
+   <tr>
+    <td>8:00–8:30</td>
+    <td>☕ Break</td>
+   </tr>
+
+   <tr>
+    <td>8:30–10:00</td>
+    <td>🏛️ Rajasthan GK</td>
+   </tr>
+
+   <tr>
+    <td>10:00–10:30</td>
+    <td>☕ Break</td>
+   </tr>
+
+   <tr>
+    <td>10:30–12:00</td>
+    <td>📝 MCQ Practice</td>
+   </tr>
+
+   <tr>
+    <td>12:00–1:00</td>
+    <td>🍱 Lunch / Rest</td>
+   </tr>
+
+   <tr>
+    <td>1:00–2:30</td>
+    <td>📚 Notes + Revision</td>
+   </tr>
+
+   <tr>
+    <td>2:30–3:00</td>
+    <td>☕ Break</td>
+   </tr>
+
+   <tr>
+    <td>3:00–4:30</td>
+    <td>🎯 Mock / Previous Questions</td>
+   </tr>
+
+   <tr>
+    <td>4:30–5:00</td>
+    <td>📊 Wrong Question Analysis</td>
+   </tr>
+
+  </table>
+
+ </div>
+
+ <div class="card">
+  <h3>🎯 Daily Rule</h3>
+  <p class="muted">
+   पढ़ाई के घंटे पूरे करने से ज्यादा जरूरी है
+   कि हर session का लक्ष्य पूरा हो।
+  </p>
+ </div>
+
+</section>
+
+
+<!-- ================= LINKS ================= -->
+
+<section id="links" class="page">
+
+ <button class="btn secondary back"
+         onclick="showPage('home')">
+  ← Home
+ </button>
+
+ <h2 class="section-title">
+  🔗 Important Links
+ </h2>
+
+ <div class="list-item">
+
+  <b>RPSC Official Website</b>
+
+  <span class="muted">
+   Official notices, syllabus and updates
+  </span>
+
+  <button class="btn"
+          onclick="openResource('https://rpsc.rajasthan.gov.in/')">
+   🔗 Open
+  </button>
+
+ </div>
+
+ <div class="list-item">
+
+  <b>Rajasthan Tourism</b>
+
+  <span class="muted">
+   Rajasthan places and information
+  </span>
+
+  <button class="btn"
+          onclick="openResource('https://www.tourism.rajasthan.gov.in/')">
+   🔗 Open
+  </button>
+
+ </div>
+
+ <div class="list-item">
+
+  <b>Other Useful Link</b>
+
+  <span class="muted">
+   अपना link यहाँ डालें
+  </span>
+
+  <button class="btn"
+          onclick="openResource('YOUR_LINK_HERE')">
+   🔗 Open
+  </button>
+
+ </div>
+
+</section>
+
+</div>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom">
+
+ <button onclick="showPage('home')">
+  <span>🏠</span>
+  Home
+ </button>
+
+ <button onclick="showPage('quizInfo')">
+  <span>📝</span>
+  Quiz
+ </button>
+
+ <button onclick="showPage('notes')">
+  <span>📚</span>
+  Notes
+ </button>
+
+ <button onclick="showPage('guide')">
+  <span>🧭</span>
+  Guide
+ </button>
+
+</nav>
+
+
+<script>
+
+/* ================= TELEGRAM ================= */
+
+if(window.Telegram && Telegram.WebApp){
+ Telegram.WebApp.ready();
+ Telegram.WebApp.expand();
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function showPage(id){
+
+ document.querySelectorAll('.page').forEach(p=>{
+  p.classList.remove('active');
  });
+
+ const page=document.getElementById(id);
+
+ if(page){
+  page.classList.add('active');
+ }
 
  window.scrollTo(0,0);
 }
 
-/* Repeater */
-function restartQuiz(){
- startQuiz();
+
+/* ================= RESOURCES ================= */
+
+function openResource(url){
+
+ if(
+  !url ||
+  url.includes('YOUR_') ||
+  url.includes('PDF_LINK') ||
+  url.includes('VIDEO_LINK')
+ ){
+  alert('इस section में अभी वास्तविक link जोड़ना बाकी है।');
+  return;
+ }
+
+ window.open(url,'_blank');
 }
 
-</script>
 
-</body>
-</html>
+/* =========================================================
+   QUESTION BANK
+   TOPIC 1 + TOPIC 2
+   TOTAL = 50 QUESTIONS
+   ========================================================= */
+
+const QUESTIONS = [
+
+/* =========================================================
+   TOPIC 1 — RAJASTHAN HISTORY
+   Q1–25
+   ========================================================= */
+
+{
+ id:1,
+ topic:"राजस्थान इतिहास",
+ q:`राजस्थान के इतिहास के संदर्भ में निम्न कथनों पर विचार कीजिए—
+
+1. राजस्थान में राजपूत कुलों का प्रभाव लगभग 8वीं शताब्दी से स्पष्ट रूप से उभरता है।
+
+2. प्रतिहारों ने 8वीं से 10वीं शताब्दी के दौरान राजस्थान और उत्तर भारत के बड़े भाग पर प्रभाव रखा।
+
+3. 11वीं–12वीं शताब्दी में चौहान, परमार और अन्य क्षेत्रीय शक्तियों के बीच प्रभुत्व-संघर्ष दिखाई देता है।
+
+सही कूट चुनिए।`,
+ o:[
+  "केवल 1 और 2",
+  "केवल 2 और 3",
+  "1, 2 और 3",
+  "केवल 1 और 3"
+ ],
+ a:2,
+ e:"तीनों कथन राजस्थान के प्रारंभिक मध्यकालीन राजनीतिक इतिहास के व्यापक विकास से संबंधित हैं।"
+},
+
+{
+ id:2,
+ topic:"राजस्थान इतिहास",
+ q:"निम्न में से किसका संबंध शाकम्भरी के चौहानों से है?",
+ o:[
+  "वासुदेव",
+  "राणा कुम्भा",
+  "राव जोधा",
+  "राणा सांगा"
+ ],
+ a:0,
+ e:"वासुदेव को शाकम्भरी के चौहान वंश की प्रारंभिक परंपरा से जोड़ा जाता है।"
+},
+
+{
+ id:3,
+ topic:"राजस्थान इतिहास",
+ q:`निम्न कथनों पर विचार कीजिए—
+
+1. प्रथम तराइन युद्ध 1191 ई. में हुआ।
+
+2. इसमें पृथ्वीराज चौहान ने मुहम्मद गौरी को पराजित किया।
+
+3. द्वितीय तराइन युद्ध में पृथ्वीराज चौहान की विजय हुई।
+
+सही कूट चुनिए।`,
+ o:[
+  "केवल 1",
+  "1 और 2",
+  "2 और 3",
+  "1, 2 और 3"
+ ],
+ a:1,
+ e:"प्रथम तराइन युद्ध 1191 ई. में हुआ और पृथ्वीराज चौहान की विजय हुई; 1192 ई. के द्वितीय तराइन युद्ध में गौरी विजयी हुआ।"
+},
+
+{
+ id:4,
+ topic:"राजस्थान इतिहास",
+ q:"निम्न में से कौन-सा युग्म सही सुमेलित है?",
+ o:[
+  "हम्मीर देव — रणथम्भौर",
+  "राव जोधा — मेवाड़",
+  "राणा कुम्भा — मारवाड़",
+  "सवाई जयसिंह — बीकानेर"
+ ],
+ a:0,
+ e:"हम्मीर देव का संबंध रणथम्भौर के चौहान शासकों से था।"
+},
+
+{
+ id:5,
+ topic:"राजस्थान इतिहास",
+ q:"राजस्थान के मध्यकालीन इतिहास के संदर्भ में मेवाड़ के उत्कर्ष के साथ निम्न में से किस शासक का विशेष संबंध है?",
+ o:[
+  "राणा कुम्भा",
+  "राव बीका",
+  "राव मालदेव",
+  "सवाई जयसिंह"
+ ],
+ a:0,
+ e:"राणा कुम्भा मेवाड़ के प्रमुख शासकों में थे और उनके शासनकाल में राज्य की राजनीतिक एवं सांस्कृतिक प्रतिष्ठा बढ़ी।"
+},
+
+{
+ id:6,
+ topic:"राजस्थान इतिहास",
+ q:`निम्न कथनों पर विचार कीजिए—
+
+1. कुम्भलगढ़ दुर्ग का निर्माण 15वीं शताब्दी में राणा कुम्भा से संबंधित है।
+
+2. कुम्भलगढ़ महाराणा प्रताप की जन्मस्थली माना जाता है।
+
+3. यह अरावली क्षेत्र में स्थित है।
+
+सही कूट है—`,
+ o:[
+  "केवल 1 और 2",
+  "केवल 2 और 3",
+  "1, 2 और 3",
+  "केवल 1 और 3"
+ ],
+ a:2,
+ e:"कुम्भलगढ़ का निर्माण राणा कुम्भा के काल से संबंधित है, महाराणा प्रताप का जन्म कुम्भलगढ़ में माना जाता है और दुर्ग अरावली क्षेत्र में स्थित है।"
+},
+
+{
+ id:7,
+ topic:"राजस्थान इतिहास",
+ q:"निम्न में से किस शासक का संबंध मेवाड़ के राजनीतिक विस्तार और सांस्कृतिक संरक्षण दोनों से जोड़ा जाता है?",
+ o:[
+  "राणा कुम्भा",
+  "हम्मीर देव",
+  "राव बीका",
+  "पृथ्वीराज चौहान"
+ ],
+ a:0,
+ e:"राणा कुम्भा को मेवाड़ की राजनीतिक शक्ति तथा स्थापत्य-सांस्कृतिक संरक्षण दोनों के लिए जाना जाता है।"
+},
+
+{
+ id:8,
+ topic:"राजस्थान इतिहास",
+ q:"निम्नलिखित में से कौन-सा क्रम कालानुक्रमिक रूप से सही है?",
+ o:[
+  "पृथ्वीराज चौहान → राणा कुम्भा → राणा सांगा → महाराणा प्रताप",
+  "राणा कुम्भा → पृथ्वीराज चौहान → राणा सांगा → महाराणा प्रताप",
+  "राणा सांगा → पृथ्वीराज चौहान → राणा कुम्भा → महाराणा प्रताप",
+  "पृथ्वीराज चौहान → राणा सांगा → राणा कुम्भा → महाराणा प्रताप"
+ ],
+ a:0,
+ e:"पृथ्वीराज चौहान के बाद राणा कुम्भा, फिर राणा सांगा और उसके बाद महाराणा प्रताप का काल आता है।"
+},
+
+{
+ id:9,
+ topic:"राजस्थान इतिहास",
+ q:"राजस्थान में गुहिल/गुहिलोत परंपरा का प्रमुख ऐतिहासिक क्षेत्र कौन-सा था?",
+ o:[
+  "मेवाड़",
+  "मारवाड़",
+  "शेखावाटी",
+  "हाड़ौती"
+ ],
+ a:0,
+ e:"गुहिल या गुहिलोत परंपरा का प्रमुख संबंध मेवाड़ से रहा।"
+},
+
+{
+ id:10,
+ topic:"राजस्थान
